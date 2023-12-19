@@ -14,8 +14,8 @@ namespace DAL.Entities
         public virtual Checkout CheckoutID { get; set; } = null!;
         public virtual TicketType TicketTypeID { get; set; } = null!;
         public int SeatNumber { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; set; } = null!;
+        public string MiddleName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
     }
 }

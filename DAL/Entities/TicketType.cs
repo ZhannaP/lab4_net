@@ -10,6 +10,6 @@ namespace DAL.Entities
 {
     public class TicketType : BaseEntity
     {
-        public string TicketTypeName { get; set; }
+        public string TicketTypeName { get; set; } = null!;
     }
 }

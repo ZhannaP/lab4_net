@@ -10,6 +10,8 @@ namespace DAL.Entities
 {
     public class TicketStatus : BaseEntity
     {
-        public string StatusName { get; set; }
+        public string StatusName { get; set; } = null!;
+        public virtual ICollection<Checkout> Checkouts { get; set; } = new List<Checkout>();
+
     }
 }

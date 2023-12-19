@@ -11,9 +11,9 @@ namespace DAL.Entities
     public partial class Theatre : BaseEntity
     {
         public int TheatreID { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        
+        public string Name { get; set; } = null!;
+        public string Address { get; set; } = null!;
+        public string Phone { get; set; } = null!;
+
     }
 }

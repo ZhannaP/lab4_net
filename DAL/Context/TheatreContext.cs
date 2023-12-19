@@ -18,20 +18,12 @@ namespace DAL.Context
         }
 
         public virtual DbSet<Checkout> Checkouts { get; set; }
-
         public virtual DbSet<Hole> Holes { get; set; }
-
-        public virtual DbSet<Theatre> Theatres { get; set; }
-
         public virtual DbSet<Performance> Performances { get; set; }
-        public virtual DbSet<TicketStatus> TicketStatuses { get; set; } = null!;
-
-        public virtual DbSet<TicketType> TicketTypes { get; set; }
-
+        public virtual DbSet<Theatre> Theatres { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
-
-        //public virtual DbSet<UserAccount> UserAccounts { get; set; }
-
+        public virtual DbSet<TicketStatus> TicketStatuses { get; set; } = null!;
+        public virtual DbSet<TicketType> TicketTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,123 +34,84 @@ namespace DAL.Context
         {
             modelBuilder.Entity<Checkout>(entity =>
             {
-                entity.HasKey(e => e.Id).HasName("PK_IdAllTickets");
+                entity.HasKey(e => e.Id).HasName("CheckoutID");
 
-                entity.HasOne(d => d.IdPerformanceNavigation).WithMany(p => p.AllTickets)
-                    .HasForeignKey(d => d.IdPerformance)
-                    .HasConstraintName("FK_AllTickets_Performance");
+                entity.HasOne(d => d.PerformanceId).WithMany(p => p.Checkouts)
+                    .HasForeignKey(d => d.Id)
+                    .HasConstraintName("PerformanceID");
 
-                entity.HasOne(d => d.IdTypeNavigation).WithMany(p => p.AllTickets)
-                    .HasForeignKey(d => d.IdType)
-                    .HasConstraintName("FK_AllTickets_TypeOfTickets");
+                entity.HasOne(d => d.TicketStatusID).WithMany(p => p.Checkouts)
+                    .HasForeignKey(d => d.TicketStatusId)
+                    .HasConstraintName("TicketStatusID");
             });
 
             modelBuilder.Entity<Hole>(entity =>
             {
-                entity.HasKey(e => e.Id).HasName("PK_IdAuthor");
+                entity.HasKey(e => e.Id).HasName("HoleID");
 
                 entity.ToTable("Holes");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
                 entity.Property(e => e.NumberOfSeats)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-                entity.Property(e => e.)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Genre>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK_IdGenre");
-
-                entity.ToTable("Genre");
-
-                entity.Property(e => e.NameGenre)
                     .HasMaxLength(20)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Performance>(entity =>
             {
-                entity.HasKey(e => e.Id).HasName("PK_IdPerformance");
+                entity.HasKey(e => e.Id).HasName("PerformanceID");
 
-                entity.ToTable("Performance");
+                entity.ToTable("Performances");
+            });
 
-                entity.Property(e => e.DateTimeEvent).HasColumnType("datetime");
-                entity.Property(e => e.PerformanceName)
+            modelBuilder.Entity<Theatre>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("TheatreID");
+
+                entity.ToTable("Theatres");
+
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdAuthorNavigation).WithMany(p => p.Performances)
-                    .HasForeignKey(d => d.IdAuthor)
-                    .HasConstraintName("FK_Performance_Author");
-
-                entity.HasOne(d => d.IdGenreNavigation).WithMany(p => p.Performances)
-                    .HasForeignKey(d => d.IdGenre)
-                    .HasConstraintName("FK_Performance_Genre");
-            });
-
-            modelBuilder.Entity<RefreshToken>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK_IdRefreshToken");
-
-                entity.ToTable("RefreshToken");
-
-                entity.Property(e => e.Expires).HasColumnType("datetime");
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.Token).IsUnicode(false);
-
-                entity.HasOne(d => d.IdUserNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdUser)
-                    .HasConstraintName("FK_RefreshToken_UserAccount");
-            });
-
-            modelBuilder.Entity<RoleUser>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK_IdRole");
-
-                entity.ToTable("RoleUser");
-
-                entity.Property(e => e.NameRole)
-                    .HasMaxLength(20)
+                entity.Property(e => e.Address)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
-            });
 
-            modelBuilder.Entity<StatusTicket>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK_IdStatus");
-
-                entity.ToTable("StatusTicket");
-
-                entity.Property(e => e.StatusName)
+                entity.Property(e => e.Phone)
                     .HasMaxLength(20)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Ticket>(entity =>
             {
-                entity.HasKey(e => e.Id).HasName("PK_IdTicket");
+                entity.HasKey(e => e.Id).HasName("TicketID");
 
-                entity.ToTable("Ticket");
+                //entity.HasOne(d => d.PerformanceID).WithMany(p => p.Checkouts)
+                //    .HasForeignKey(d => d.PerformanceID)
+                //    .HasConstraintName("PerformanceID");
 
-                entity.HasOne(d => d.IdAllTicketsNavigation).WithMany(p => p.Tickets)
-                    .HasForeignKey(d => d.IdAllTickets)
-                    .HasConstraintName("FK_Ticket_AllTickets");
+                //entity.HasOne(d => d.CheckoutNavigation).WithMany(p => p.Tickets)
+                //    .HasForeignKey(d => d.CheckoutID)
+                //    .HasConstraintName("CheckoutID");
 
-                entity.HasOne(d => d.IdStatusNavigation).WithMany(p => p.Tickets)
-                    .HasForeignKey(d => d.IdStatus)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Ticket_StatusTicket");
+                //entity.HasOne(d => d.TicketTypeNavigation).WithMany(p => p.Tickets)
+                //    .HasForeignKey(d => d.TicketTypeID)
+                //    .HasConstraintName("TicketTypeID");
+            });
 
-                entity.HasOne(d => d.IdUserNavigation).WithMany(p => p.Tickets)
-                    .HasForeignKey(d => d.IdUser)
-                    .HasConstraintName("FK_Ticket_UserAccount");
+            modelBuilder.Entity<TicketStatus>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("TicketStatusID");
+
+                entity.ToTable("TicketStatuses");
+
+                entity.Property(e => e.StatusName)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TicketType>(entity =>
@@ -170,32 +123,10 @@ namespace DAL.Context
                     .IsUnicode(false);
             });
 
-        //    modelBuilder.Entity<UserAccount>(entity =>
-        //    {
-        //        entity.HasKey(e => e.Id).HasName("PK_IdUser");
-
-        //        entity.ToTable("UserAccount");
-
-        //        entity.Property(e => e.Email)
-        //            .HasMaxLength(20)
-        //            .IsUnicode(false);
-        //        entity.Property(e => e.FirstName)
-        //            .HasMaxLength(20)
-        //            .IsUnicode(false);
-        //        entity.Property(e => e.LastName)
-        //            .HasMaxLength(20)
-        //            .IsUnicode(false);
-        //        entity.Property(e => e.MiddleName)
-        //            .HasMaxLength(20)
-        //            .IsUnicode(false);
-
-        //        entity.HasOne(d => d.IdRoleNavigation).WithMany(p => p.UserAccounts)
-        //            .HasForeignKey(d => d.IdRole)
-        //            .HasConstraintName("FK_UserAccount_RoleUser");
-        //    });
-        //    OnModelCreatingPartial(modelBuilder);
-        //}
+            OnModelCreatingPartial(modelBuilder);
+        }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
+
 }

@@ -10,10 +10,13 @@ namespace DAL.Entities
 {
     public class Checkout : BaseEntity
     {
+        public int TicketStatusId { get; set; }
 
-        public int TicketStatusID { get; set; }
+        public int PerformanceID { get; set; }
+
         public int AmountOfTickets { get; set; }
-        public virtual TicketStatus IdPerformanceNavigation { get; set; } = null!;
+        public virtual TicketStatus TicketStatusID { get; set; } = null!;
+        public virtual Performance PerformanceId { get; set; } = null!;
         public decimal Price { get; set; }
     }
 }

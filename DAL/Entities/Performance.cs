@@ -10,9 +10,12 @@ namespace DAL.Entities
 {
     public class Performance : BaseEntity
     {
+        public string Name { get; set; } = null!;
         public virtual  Hole HoleID { get; set; } = null!;
-        public string Author { get; set; }
+        public string Author { get; set; } = null!;
         public int Rate { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
+
+        public virtual ICollection<Checkout> Checkouts { get; set; } = new List<Checkout>();
     }
 }
