@@ -37,7 +37,7 @@ namespace lab4_net.Controllers
             return Ok(result);
         }
 
-        [HttpPost("GetByGenre")]
+        [HttpPost("GetByHole")]
         public async Task<IActionResult> GetPerformancesByHole(PerformanceByHoleRequest request)
         {
             var result = await performanceService.GetPerformancesByHole(request);

@@ -20,6 +20,12 @@ namespace BLL
             CreateMap<Performance, PerformanceResponse>().ForMember(dest => dest.PerformanceID, opt => opt.MapFrom(scr => scr.Id));
 
             CreateMap<PerformanceRequest, Performance>();
+
+            CreateMap<Ticket, TicketResponse>().ForMember(dest => dest.Id, opt => opt.MapFrom(scr => scr.Id));
+
+            CreateMap<HoleRequest, HoleResponse>().ForMember(dest => dest.HoleId, opt => opt.MapFrom(scr => scr.HoleId));
+
+            CreateMap<TheatreRequest, TheatreResponse>().ForMember(dest => dest.TheatreID, opt => opt.MapFrom(scr => scr.TheatreID));
         }
         
     }

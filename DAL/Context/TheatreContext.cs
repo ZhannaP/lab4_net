@@ -18,12 +18,14 @@ namespace DAL.Context
         }
 
         public virtual DbSet<Checkout> Checkouts { get; set; }
-        public virtual DbSet<Hole> Holes { get; set; }
+        public virtual DbSet<Hall> Holes { get; set; }
         public virtual DbSet<Performance> Performances { get; set; }
         public virtual DbSet<Theatre> Theatres { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<TicketStatus> TicketStatuses { get; set; } = null!;
         public virtual DbSet<TicketType> TicketTypes { get; set; }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,7 +47,7 @@ namespace DAL.Context
                     .HasConstraintName("TicketStatusID");
             });
 
-            modelBuilder.Entity<Hole>(entity =>
+            modelBuilder.Entity<Hall>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("HoleID");
 
@@ -90,7 +92,7 @@ namespace DAL.Context
             {
                 entity.HasKey(e => e.Id).HasName("TicketID");
 
-                
+
             });
 
             modelBuilder.Entity<TicketStatus>(entity =>
@@ -115,8 +117,6 @@ namespace DAL.Context
 
             OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 
 }

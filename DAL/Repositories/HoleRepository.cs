@@ -2,6 +2,8 @@
 using DAL.Entities;
 using DAL.Repositories.Interfaces;
 
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +12,24 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class HoleRepository : GenericRepository<Hole>, IHoleRepository
+    public class HoleRepository : GenericRepository<Hall>, IHoleRepository
     {
         public HoleRepository(TheatreContext context) : base(context)
         {
         }
 
-        public Task<List<Hole>> GetHoleByID(int HoleID)
+        public async Task<List<Hall>> GetHoleByID(int HoleId)
         {
-            throw new NotImplementedException();
+            List<Hall> halls = new();
+            halls = await context.Holes.Where(p => p.Id == HoleId).ToListAsync();
+            return halls;
         }
 
-        public Task<List<Hole>> GetHoleByName(string Name)
+        public async Task<List<Hall>> GetHoleByTheatreId(int TheatreId)
         {
-            throw new NotImplementedException();
+            List<Hall> halls = new();
+            halls = await context.Holes.Where(p => p.TheatreID.Id == TheatreId).ToListAsync();
+            return halls;
         }
     }
 }
