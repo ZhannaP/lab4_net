@@ -90,17 +90,7 @@ namespace DAL.Context
             {
                 entity.HasKey(e => e.Id).HasName("TicketID");
 
-                //entity.HasOne(d => d.PerformanceID).WithMany(p => p.Checkouts)
-                //    .HasForeignKey(d => d.PerformanceID)
-                //    .HasConstraintName("PerformanceID");
-
-                //entity.HasOne(d => d.CheckoutNavigation).WithMany(p => p.Tickets)
-                //    .HasForeignKey(d => d.CheckoutID)
-                //    .HasConstraintName("CheckoutID");
-
-                //entity.HasOne(d => d.TicketTypeNavigation).WithMany(p => p.Tickets)
-                //    .HasForeignKey(d => d.TicketTypeID)
-                //    .HasConstraintName("TicketTypeID");
+                
             });
 
             modelBuilder.Entity<TicketStatus>(entity =>
