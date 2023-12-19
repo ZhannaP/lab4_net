@@ -10,9 +10,9 @@ namespace DAL.Entities
 {
     public class Ticket : BaseEntity
     {
-        public int PerformanceID { get; set; }
-        public int CheckoutID { get; set; }
-        public int TicketTypeID { get; set; }
+        public virtual Performance PerformanceID { get; set; } = null!;
+        public virtual Checkout CheckoutID { get; set; } = null!;
+        public virtual TicketType TicketTypeID { get; set; } = null!;
         public int SeatNumber { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

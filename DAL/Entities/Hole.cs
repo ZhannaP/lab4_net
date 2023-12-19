@@ -10,7 +10,7 @@ namespace DAL.Entities
 {
     public class Hole : BaseEntity
     {
-        public int TheatreID { get; set; }
+        public virtual Theatre TheatreID { get; set; } = null!;
         public string Name { get; set; }
         public int NumberOfSeats { get; set; }
     }

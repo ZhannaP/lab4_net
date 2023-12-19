@@ -13,7 +13,6 @@ namespace DAL.Entities
 
         public int TicketStatusID { get; set; }
         public int AmountOfTickets { get; set; }
-
         public virtual TicketStatus IdPerformanceNavigation { get; set; } = null!;
         public decimal Price { get; set; }
     }

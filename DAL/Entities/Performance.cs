@@ -10,7 +10,7 @@ namespace DAL.Entities
 {
     public class Performance : BaseEntity
     {
-        public int HoleID { get; set; }
+        public virtual  Hole HoleID { get; set; } = null!;
         public string Author { get; set; }
         public int Rate { get; set; }
         public string Description { get; set; }
