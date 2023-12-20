@@ -1,83 +1,38 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BLL.Requests;
+using BLL.Services;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lab4_net.Controllers
 {
     public class TicketController : Controller
     {
-        // GET: TicketController
-        public ActionResult Index()
+        private readonly ITicketService ticketService;
+
+        [HttpGet("GetAllTickets")]
+        public async Task<IActionResult> GetAllTickets()
         {
-            return View();
+            var result = await ticketService.GetAllTickets();
+
+            return Ok(result);
         }
 
-        // GET: TicketController/Details/5
-        public ActionResult Details(int id)
+        [HttpPost("GetTicketsByPerformanceId")]
+        public async Task<IActionResult> GetTicketsByPerformance(int performanceId)
         {
-            return View();
+            TicketRequest request = new();
+            request.PerformanceId = performanceId;
+            var result = await ticketService.GetTicketsByPerformance(request);
+            return Ok(result);
         }
 
-        // GET: TicketController/Create
-        public ActionResult Create()
+        [HttpPost("GetBoughtSeats")]
+        public async Task<IActionResult> GetBoughtSeats()
         {
-            return View();
-        }
-
-        // POST: TicketController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: TicketController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: TicketController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: TicketController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: TicketController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            TicketRequest request = new();
+            var result = await ticketService.GetBoughtSeats(request);
+            return Ok(result);
         }
     }
 }

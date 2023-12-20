@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    internal class TicketService : ITicketService
+    public class TicketService : ITicketService
     {
         private readonly IMapper mapper;
         private IPerformanceRepository performanceRepository;
@@ -35,16 +35,23 @@ namespace BLL.Services
 
         }
 
-        public async Task<List<TicketResponse>> GetTicketsByPerformance(PerformanceByHoleRequest request)
+        public async Task<List<TicketResponse>> GetTicketsByPerformance(TicketRequest request)
         {
             var tickets = await ticketRepository.GetAllAsync();
 
             return mapper.Map<List<TicketResponse>>(tickets);
         }
 
-        public async Task<List<TicketResponse>> GetTicketsBySeatNumber(PerformancesByAuthorRequest request)
+        public async Task<List<TicketResponse>> GetBoughtSeats(TicketRequest request)
         {
-            throw new NotImplementedException();
+            var tickets = await ticketRepository.GetBoughtSeats(request.PerformanceId);
+            return mapper.Map<List<TicketResponse>>(tickets);
+        }
+
+        public async Task<List<TicketResponse>> GetTicketsBySeatNumber(TicketRequest request)
+        {
+            var tickets = await ticketRepository.GetBoughtSeats(request.PerformanceId);
+            return mapper.Map<List<TicketResponse>>(tickets);
         }
     }
 }

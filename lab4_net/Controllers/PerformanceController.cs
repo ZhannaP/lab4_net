@@ -30,24 +30,30 @@ namespace lab4_net.Controllers
         }
 
         [HttpPost("GetByAuthor")]
-        public async Task<IActionResult> GetPerformancesByAuthor(PerformancesByAuthorRequest request)
+        public async Task<IActionResult> GetPerformancesByAuthor(string authorName)
         {
+            PerformancesByAuthorRequest request = new();
+            request.AuthorName = authorName;
             var result = await performanceService.GetPerformancesByAuthor(request);
 
             return Ok(result);
         }
 
         [HttpPost("GetByHole")]
-        public async Task<IActionResult> GetPerformancesByHole(PerformanceByHoleRequest request)
+        public async Task<IActionResult> GetPerformancesByHole(int holeId)
         {
+            PerformanceByHoleRequest request = new();
+            request.HoleID = holeId;
             var result = await performanceService.GetPerformancesByHole(request);
 
             return Ok(result);
         }
 
         [HttpPost("GetByName")]
-        public async Task<IActionResult> GetPerformancesByName(PerformancesByNameRequest request)
+        public async Task<IActionResult> GetPerformancesByName(string Name)
         {
+            PerformancesByNameRequest request = new();
+            request.Name = Name;
             var result = await performanceService.GetPerformancesByName(request);
 
             return Ok(result);

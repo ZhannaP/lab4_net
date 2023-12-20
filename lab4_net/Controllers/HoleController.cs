@@ -16,7 +16,7 @@ namespace lab4_net.Controllers
             this.holeService = holeService;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("GetAllHalls")]
         public async Task<IActionResult> GetAllHalls()
         {
             var result = await holeService.GetAllHoles();
@@ -24,11 +24,12 @@ namespace lab4_net.Controllers
             return Ok(result);
         }
 
-        [HttpPost("GetByHallName")]
-        public async Task<IActionResult> GetHallByTheatre(HoleByTheatreRequest request)
+        [HttpPost("GetByHallTheatreId")]
+        public async Task<IActionResult> GetHallByTheatreId(int TheatreId)
         {
+            HoleByTheatreRequest request = new();
+            request.TheatreId = TheatreId;
             var result = await holeService.GetHoleByTheatreId(request);
-
             return Ok(result);
         }
     }

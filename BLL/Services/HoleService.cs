@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    internal class HoleService : IHoleService
+    public class HoleService : IHoleService
     {
         private readonly IMapper mapper;
         private IHoleRepository holeRepository;
@@ -33,7 +33,7 @@ namespace BLL.Services
 
         public async Task<List<HoleResponse>> GetHoleByTheatreId(HoleByTheatreRequest request)
         {
-            var holes = await holeRepository.GetHoleByTheateId(request.TheatreId);
+            var holes = await holeRepository.GetHoleByTheatreId(request.TheatreId);
             return mapper.Map<List<HoleResponse>>(holes);
         }
     }

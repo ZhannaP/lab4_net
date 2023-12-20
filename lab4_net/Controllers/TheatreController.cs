@@ -22,9 +22,11 @@ namespace lab4_net.Controllers
             return Ok(result);
         }
 
-        [HttpPost("GetByTheatreId")]
-        public async Task<IActionResult> GetHallByTheatre(TheatreRequest request)
+        [HttpPost("GetTheatreByTheatreId")]
+        public async Task<IActionResult> GetHallByTheatre(int TheatreId)
         {
+            TheatreRequest request = new();
+            request.TheatreID = TheatreId;
             var result = await theatreService.GetTheatreById(request);
             return Ok(result);
         }
