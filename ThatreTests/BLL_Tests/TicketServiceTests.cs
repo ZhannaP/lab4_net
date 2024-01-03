@@ -38,7 +38,8 @@ namespace ThatreTests.BLL_Tests
         public async Task GetCheckouts_ShouldReturnMappedTickets()
         {
             // Arrange
-            var tickets = new List<Ticket>(); 
+            var tickets = new List<Ticket>() { new Ticket { LastName = "meow", FirstName = "meow", MiddleName = "meow", Id = 1,  PerformaceId = 1, Price = 100, SeatNumber = 1},
+            new Ticket { LastName = "meow1", FirstName = "meow1", MiddleName = "meow1", Id = 2,  PerformaceId = 1, Price = 100, SeatNumber = 21}}; ;
             _ticketRepositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(tickets);
             _mapperMock.Setup(mapper => mapper.Map<List<TicketResponse>>(It.IsAny<List<Ticket>>())).Returns(new List<TicketResponse>());
 
@@ -54,8 +55,9 @@ namespace ThatreTests.BLL_Tests
         public async Task GetTicketsByPerformance_ShouldReturnMappedTickets()
         {
             // Arrange
-            var request = new TicketRequest(); 
-            var tickets = new List<Ticket>(); 
+            var request = new TicketRequest();
+            var tickets = new List<Ticket>()  { new Ticket { LastName = "meow", FirstName = "meow", MiddleName = "meow", Id = 1,  PerformaceId = 1, Price = 100, SeatNumber = 1},
+            new Ticket { LastName = "meow1", FirstName = "meow1", MiddleName = "meow1", Id = 2,  PerformaceId = 1, Price = 100, SeatNumber = 21}}; ;
             _ticketRepositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(tickets);
             _mapperMock.Setup(mapper => mapper.Map<List<TicketResponse>>(It.IsAny<List<Ticket>>())).Returns(new List<TicketResponse>());
 
@@ -72,7 +74,8 @@ namespace ThatreTests.BLL_Tests
         {
             // Arrange
             var request = new TicketRequest { PerformanceId = 1 };
-            var tickets = new List<Ticket>(); 
+            var tickets = new List<Ticket>()  { new Ticket { LastName = "meow", FirstName = "meow", MiddleName = "meow", Id = 1,  PerformaceId = 1, Price = 100, SeatNumber = 1},
+            new Ticket { LastName = "meow1", FirstName = "meow1", MiddleName = "meow1", Id = 2,  PerformaceId = 1, Price = 100, SeatNumber = 21}}; ;
             _ticketRepositoryMock.Setup(repo => repo.GetBoughtSeats(request.PerformanceId)).ReturnsAsync(tickets);
             _mapperMock.Setup(mapper => mapper.Map<List<TicketResponse>>(It.IsAny<List<Ticket>>())).Returns(new List<TicketResponse>());
 
@@ -89,7 +92,8 @@ namespace ThatreTests.BLL_Tests
         {
             // Arrange
             var request = new TicketRequest { PerformanceId = 1 };
-            var tickets = new List<Ticket>(); 
+            var tickets = new List<Ticket>() { new Ticket { LastName = "meow", FirstName = "meow", MiddleName = "meow", Id = 1,  PerformaceId = 1, Price = 100, SeatNumber = 1},
+            new Ticket { LastName = "meow1", FirstName = "meow1", MiddleName = "meow1", Id = 2,  PerformaceId = 1, Price = 100, SeatNumber = 21}};
             _ticketRepositoryMock.Setup(repo => repo.GetBoughtSeats(request.PerformanceId)).ReturnsAsync(tickets);
             _mapperMock.Setup(mapper => mapper.Map<List<TicketResponse>>(It.IsAny<List<Ticket>>())).Returns(new List<TicketResponse>());
 

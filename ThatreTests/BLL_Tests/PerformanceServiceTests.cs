@@ -63,8 +63,10 @@ namespace ThatreTests.BLL_Tests
         [Fact]
         public async Task GetAllPerformances_ShouldReturnMappedPerformances()
         {
+            Hall hall = new Hall { Id = 1, Name = "meow", NumberOfSeats = 10 };
             // Arrange
-            var performances = new List<Performance>();
+            var performances = new List<Performance>() {  new Performance() { Id = 1, Name = "TestPerformance", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 },
+             new Performance() { Id = 1, Name = "TestPerformance2", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 }};
             _performanceRepositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(performances);
             _mapperMock.Setup(mapper => mapper.Map<List<PerformanceResponse>>(performances)).Returns(new List<PerformanceResponse>());
 
@@ -80,9 +82,11 @@ namespace ThatreTests.BLL_Tests
         [Fact]
         public async Task GetPerformancesByAuthor_ShouldReturnMappedPerformances()
         {
+            Hall hall = new Hall { Id = 1, Name = "meow", NumberOfSeats = 10 };
             // Arrange
             var request = new PerformancesByAuthorRequest { AuthorName = "TestAuthor" };
-            var performances = new List<Performance> { new Performance() };
+            var performances = new List<Performance> { new Performance() { Id = 1, Name = "TestPerformance", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 },
+             new Performance() { Id = 1, Name = "TestPerformance2", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 }};
             _performanceRepositoryMock.Setup(repo => repo.GetPerformancesByAuthor(request.AuthorName)).ReturnsAsync(performances);
             _mapperMock.Setup(mapper => mapper.Map<List<PerformanceResponse>>(performances)).Returns(new List<PerformanceResponse>());
 
@@ -98,9 +102,10 @@ namespace ThatreTests.BLL_Tests
         [Fact]
         public async Task GetPerformancesByHole_ShouldReturnMappedPerformances()
         {
+            Hall hall = new Hall { Id = 1, Name = "meow", NumberOfSeats = 10 };
             // Arrange
             var request = new PerformanceByHoleRequest { HoleID = 1 };
-            var performances = new List<Performance> { new Performance() };
+            var performances = new List<Performance> { new Performance() { Id = 1, Name = "meow", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 } };
             _performanceRepositoryMock.Setup(repo => repo.GetPerformancesByHole(request.HoleID)).ReturnsAsync(performances);
             _mapperMock.Setup(mapper => mapper.Map<List<PerformanceResponse>>(performances)).Returns(new List<PerformanceResponse>());
 
@@ -116,9 +121,12 @@ namespace ThatreTests.BLL_Tests
         [Fact]
         public async Task GetPerformancesByName_ShouldReturnMappedPerformances()
         {
+            Hall hall = new Hall { Id = 1, Name = "meow", NumberOfSeats = 10 };
+
             // Arrange
             var request = new PerformancesByNameRequest { Name = "TestPerformance" };
-            var performances = new List<Performance> { new Performance() };
+            var performances = new List<Performance> { new Performance() { Id = 1, Name = "TestPerformance", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 },
+             new Performance() { Id = 1, Name = "TestPerformance2", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 }};
             _performanceRepositoryMock.Setup(repo => repo.GetPerformancesByName(request.Name)).ReturnsAsync(performances);
             _mapperMock.Setup(mapper => mapper.Map<List<PerformanceResponse>>(performances)).Returns(new List<PerformanceResponse>());
 
@@ -134,9 +142,11 @@ namespace ThatreTests.BLL_Tests
         [Fact]
         public async Task GetPerformancesByRate_ShouldReturnMappedPerformances()
         {
+            Hall hall = new Hall { Id = 1, Name = "meow", NumberOfSeats = 10 };
             // Arrange
             var request = new PerformanceByRateRequest { Rate = 5 };
-            var performances = new List<Performance> { new Performance() };
+            var performances = new List<Performance> { new Performance() { Id = 1, Name = "TestPerformance", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 },
+             new Performance() { Id = 1, Name = "TestPerformance2", HoleID = hall, Author = "meow", Description = "meow", Rate = 1 } };
             _performanceRepositoryMock.Setup(repo => repo.GetPerformancesByRate(request.Rate)).ReturnsAsync(performances);
             _mapperMock.Setup(mapper => mapper.Map<List<PerformanceResponse>>(performances)).Returns(new List<PerformanceResponse>());
 

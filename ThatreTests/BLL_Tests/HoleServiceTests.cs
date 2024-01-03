@@ -36,7 +36,9 @@ namespace ThatreTests.BLL_Tests
         public async Task GetAllHoles_ShouldReturnMappedHoles()
         {
             // Arrange
-            var holes = new List<Hall>();
+            var holes = new List<Hall>() {
+            new Hall { Id = 1, Name = "meow", NumberOfSeats = 20},
+            new Hall { Id = 2, Name = "meow2", NumberOfSeats = 30}};
             _holeRepositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(holes);
             _mapperMock.Setup(mapper => mapper.Map<List<HoleResponse>>(It.IsAny<List<Hall>>())).Returns(new List<HoleResponse>());
 
@@ -53,7 +55,9 @@ namespace ThatreTests.BLL_Tests
         {
             // Arrange
             var request = new HoleByTheatreRequest { TheatreId = 1 }; 
-            var holes = new List<Hall>(); 
+            var holes = new List<Hall>() {
+            new Hall { Id = 1, Name = "meow", NumberOfSeats = 20},
+            new Hall { Id = 2, Name = "meow2", NumberOfSeats = 30}}; 
             _holeRepositoryMock.Setup(repo => repo.GetHoleByTheatreId(request.TheatreId)).ReturnsAsync(holes);
             _mapperMock.Setup(mapper => mapper.Map<List<HoleResponse>>(It.IsAny<List<Hall>>())).Returns(new List<HoleResponse>());
 
