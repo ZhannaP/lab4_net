@@ -17,10 +17,10 @@ namespace BLL.Services
     {
         private readonly IMapper mapper;
         private IPerformanceRepository performanceRepository;
-        private IHoleRepository holeRepository;
+        private IHoleServices holeRepository;
 
 
-        public PerformanceService(IMapper mapper, IPerformanceRepository performanceRepository, IHoleRepository holeRepository)
+        public PerformanceService(IMapper mapper, IPerformanceRepository performanceRepository, IHoleServices holeRepository)
         {
             this.mapper = mapper;
             this.holeRepository = holeRepository;

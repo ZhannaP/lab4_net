@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.Interfaces
 {
-    public interface IHoleRepository : IGenericRepository<Hall>
+    public interface IHoleServices : IGenericRepository<Hall>
     {
         Task<List<Hall>> GetHoleByID(int HoleID);
         Task<List<Hall>> GetHoleByTheatreId(int TheatreId);

@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(typeof(Mapper));
 builder.Services.AddDbContext<TheatreContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Server=DESKTOP-9BTG6A8\\Viacheslav;Database=Theatre_test;Trusted_Connection=True;TrustServerCertificate=True; MultipleActiveResultSets = true;"));
 });
 
 builder.Services.AddControllers();
@@ -24,7 +24,7 @@ builder.Services.AddScoped<ITicketService, TicketService>();
 
 
 builder.Services.AddScoped<IPerformanceRepository, PerformanceRepository>();
-builder.Services.AddScoped<IHoleRepository, HoleRepository>();
+builder.Services.AddScoped<IHoleServices, HoleRepository>();
 
 builder.Services.AddScoped<ITheatreRepository, TheatreRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();

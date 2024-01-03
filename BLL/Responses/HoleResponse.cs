@@ -9,7 +9,6 @@ namespace BLL.Responses
     public class HoleResponse
     {
         public int HoleId { get; set; }
-        public int TheatreId { get; set; }
         public string Name { get; set; } = null!;
         public int NumberOfSeats { get; set; }
     }

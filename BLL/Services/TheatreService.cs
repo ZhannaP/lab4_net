@@ -35,5 +35,11 @@ namespace BLL.Services
             var theatres = await repository.GetByIdAsync(request.TheatreID);
             return mapper.Map<List<TheatreResponse>>(theatres);
         }
+
+        public async Task<List<TheatreResponse>> GetTheatreByName(TheatreRequest request)
+        {
+            var theatres = await repository.GetTheatreByName(request.Name);
+            return mapper.Map<List<TheatreResponse>>(theatres);
+        }
     }
 }

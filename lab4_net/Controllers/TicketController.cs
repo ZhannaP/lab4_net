@@ -10,10 +10,10 @@ namespace lab4_net.Controllers
     {
         private readonly ITicketService ticketService;
 
-        [HttpGet("GetAllTickets")]
-        public async Task<IActionResult> GetAllTickets()
+        [HttpGet("GetCheckouts")]
+        public async Task<IActionResult> GetCheckouts()
         {
-            var result = await ticketService.GetAllTickets();
+            var result = await ticketService.GetCheckouts();
 
             return Ok(result);
         }

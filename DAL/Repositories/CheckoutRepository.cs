@@ -18,7 +18,7 @@ namespace DAL.Repositories
         {
         }
 
-        public async Task<List<Checkout>> GetAllTickets(int PerformanceID)
+        public async Task<List<Checkout>> GetCheckouts(int PerformanceID)
         {
             var tickets = await context.Checkouts.Where(x => x.PerformanceID == PerformanceID).ToListAsync();
             return tickets;

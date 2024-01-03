@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class HoleRepository : GenericRepository<Hall>, IHoleRepository
+    public class HoleRepository : GenericRepository<Hall>, IHoleServices
     {
         public HoleRepository(TheatreContext context) : base(context)
         {

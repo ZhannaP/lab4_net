@@ -26,7 +26,7 @@ namespace BLL.Services
             this.performanceRepository = performanceRepository;
         }
 
-        public async Task<List<TicketResponse>> GetAllTickets()
+        public async Task<List<TicketResponse>> GetCheckouts()
         {
 
             var tickets = await ticketRepository.GetAllAsync();

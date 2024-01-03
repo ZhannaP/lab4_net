@@ -17,12 +17,20 @@ namespace BLL.Services
     public class HoleService : IHoleService
     {
         private readonly IMapper mapper;
-        private IHoleRepository holeRepository;
+        private IHoleServices holeRepository;
+        private IHoleServices object1;
+        private IMapper object2;
 
-        public HoleService(IMapper mapper, IHoleRepository holeRepository)
+        public HoleService(IMapper mapper, IHoleServices holeRepository)
         {
             this.mapper = mapper;
             this.holeRepository = holeRepository;
+        }
+
+        public HoleService(IHoleServices object1, IMapper object2)
+        {
+            this.object1 = object1;
+            this.object2 = object2;
         }
 
         public async Task<List<HoleResponse>> GetAllHoles()
